@@ -19,25 +19,46 @@ public class MainActivity extends AppCompatActivity {
         return toreturn;
     }
     public void plus(View view){
-        goToActivity2(""+(getnum(view)[0]+getnum(view)[1]));
+        try{
+            int a=getnum(view)[0]+getnum(view)[1];
+            goToActivity2(""+a);
+        }catch(Exception e){
+            goToActivity2("Error!!!");
+        }
+
     }
     public void minus(View view){
-        goToActivity2(""+(getnum(view)[0]-getnum(view)[1]));
+        try{
+            int a=getnum(view)[0]-getnum(view)[1];
+            goToActivity2(""+a);
+        }catch(Exception e){
+            goToActivity2("Error!!!");
+        }
     }
     public void mult(View view){
-        goToActivity2(""+getnum(view)[0]*getnum(view)[1]);
+        try{
+            int a=getnum(view)[0]*getnum(view)[1];
+            goToActivity2(""+a);
+        }catch(Exception e){
+            goToActivity2("Error!!!");
+        }
     }
     public void div(View view){
-        String toreturn="";
-        int num[]=getnum(view);
-        if(num[1]==0){
-            toreturn="Error! divides by zero!!!";
-        }else if(num[0]%num[1]==0){
-            toreturn=""+(num[0]/num[1]);
-        }else{
-            toreturn=String.format("%.2f",((double)num[0]/(double)num[1]));
+        try {
+            String toreturn = "";
+            int num[] = getnum(view);
+            if (num[1] == 0) {
+                goToActivity2("Divides by Zero!!!");
+                return;
+            } else if (num[0] % num[1] == 0) {
+                toreturn = "" + (num[0] / num[1]);
+            } else {
+                toreturn = String.format("%.2f", ((double) num[0] / (double) num[1]));
+            }
+            goToActivity2(toreturn);
+        }catch(Exception e){
+            goToActivity2("Error!!!");
         }
-        goToActivity2(toreturn);
     }
     public void  goToActivity2(String a){
         Intent intent=new Intent(this,MainActivity2.class);
